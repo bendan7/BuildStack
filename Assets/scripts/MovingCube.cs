@@ -37,14 +37,14 @@ public class MovingCube : MonoBehaviour
         return new Color(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f));
     }
 
-    internal void Stop()
+    internal bool Stop()
     {
         _moveSpeed = 0;
         float hangOver = GetHangOver();
 
         if (IsGameEnd(hangOver))
         {
-            return;
+            return false;
         }
 
         float direction = hangOver >= 0 ? 1f : -1f;
@@ -60,6 +60,7 @@ public class MovingCube : MonoBehaviour
         }
         LastCube = this;
 
+        return true;
     }
 
     private bool IsGameEnd(float hangOver)
